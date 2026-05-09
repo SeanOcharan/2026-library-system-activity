@@ -1,10 +1,18 @@
 <?php
+
 declare(strict_types=1);
-namespace App\library\Exception;
+
+namespace App\Library\Exception;
 
 use Exception;
 
-class ValidationException extends Exception {
-    
-}
-?>
+/**
+ * Validation Exception
+ *
+ * Thrown when input validation fails or required parameters are invalid.
+ *
+ * @author Library Developer
+ * @since 2026-05-09
+ */
+class ValidationException extends Exception
+{

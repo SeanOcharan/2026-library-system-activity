@@ -8,7 +8,7 @@ declare(strict_types=1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrow Book</title>
+    <title>Add Book</title>
 
     <style>
         body {
@@ -43,16 +43,22 @@ declare(strict_types=1);
             color: #333;
         }
 
-        input {
+        input, textarea, select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 3px;
             font-size: 14px;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        input:focus {
+        textarea {
+            resize: none;
+            min-height: 80px;
+        }
+
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #28a745;
             box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
@@ -75,70 +81,71 @@ declare(strict_types=1);
             background-color: #218838;
         }
 
-        .info {
-            background-color: #e7f3ff;
-            border-left: 4px solid #2196F3;
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 3px;
-            color: #333;
-            font-size: 14px;
+        .required::after {
+            content: " *";
+            color: red;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Borrow a Book</h1>
+        <h1>Add New Book</h1>
 
-        <form action="" method="POST">
+        <form action="?act=add" method="POST">
 
             <div class="form-group">
-                <label for="student_id">Student ID *</label>
+                <label for="title" class="required">Book Title</label>
                 <input
-                    type="number"
-                    id="student_id"
-                    name="student_id"
-                    min="1"
+                    type="text"
+                    id="title"
+                    name="title"
                     required
-                    placeholder="Enter student ID"
+                    placeholder="Enter book title"
+                    maxlength="255"
                 >
             </div>
 
             <div class="form-group">
-                <label for="book_id">Book ID *</label>
+                <label for="author" class="required">Author</label>
                 <input
-                    type="number"
-                    id="book_id"
-                    name="book_id"
-                    min="1"
+                    type="text"
+                    id="author"
+                    name="author"
                     required
-                    placeholder="Enter book ID"
+                    placeholder="Enter author name"
+                    maxlength="255"
                 >
             </div>
 
             <div class="form-group">
-                <label for="days">Number of Days *</label>
+                <label for="year" class="required">Publication Year</label>
                 <input
                     type="number"
-                    id="days"
-                    name="days"
-                    min="1"
-                    max="30"
-                    value="14"
+                    id="year"
+                    name="year"
                     required
-                    placeholder="14"
+                    min="1000"
+                    max="2099"
+                    placeholder="2026"
                 >
             </div>
 
-            <button type="submit">Borrow Book</button>
+            <div class="form-group">
+                <label for="genre" class="required">Genre</label>
+                <input
+                    type="text"
+                    id="genre"
+                    name="genre"
+                    required
+                    placeholder="Enter genre (e.g., Fiction, Non-fiction, Science, History)"
+                    maxlength="100"
+                >
+            </div>
+
+            <button type="submit">Add Book</button>
 
         </form>
-
-        <div class="info">
-            <strong>Note:</strong> Books are typically borrowed for 14 days.
-            Late returns incur a fine of PHP 5.00 per day.
-        </div>
     </div>
 
 </body>
